@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌿 Plant Disease Classifier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    input, button {
+      margin: 1rem 0;
+    }
+    img {
+      width: 300px;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 12px;
+    }
+    .result {
+      font-size: 1.2rem;
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 Plant Disease Classifier</h1>
+
+  <input type="file" id="fileInput" accept="image/*" />
+  <br />
+  <button onclick="predict()">Predict Disease</button>
+  <br />
+  <img id="preview" style="display:none;" />
+  <p class="result" id="result"></p>
+
+  <script>
+    let selectedFile = null;
+
+    document.getElementById('fileInput').addEventListener('change', (e) => {
+      selectedFile = e.target.files[0];
+      const preview = document.getElementById('preview');
+      preview.src = URL.createObjectURL(selectedFile);
+      preview.style.display = 'block';
+      document.getElementById('result').textContent = '';
+    });
+
+    async function predict() {
+      if (!selectedFile) {
+        alert("Please select an image first.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      document.getElementById('result').textContent = 'Predicting...';
+
+      try {
+        const response = await fetch('https://your-railway-app-url/predict', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        document.getElementById('result').textContent = data.predicted_class || data.error;
+      } catch (error) {
+        document.getElementById('result').textContent = 'Error: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
