@@ -24,6 +24,7 @@
       text-align: center;
       width: 100%;
       max-width: 500px;
+      animation: fadeSlideIn 0.6s ease-out;
     }
 
     h1 {
@@ -45,6 +46,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin: 0.5rem;
     }
 
     button:hover {
@@ -93,6 +95,11 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +108,8 @@
 
     <input type="file" id="fileInput" accept="image/*" />
     <button onclick="predict()">Predict Disease</button>
-    
+    <button onclick="resetForm()">Reset</button>
+
     <img id="preview" />
     <div id="loader" class="loader" style="display: none;"></div>
     <p class="result" id="result"></p>
@@ -147,6 +155,14 @@
       } finally {
         loader.style.display = 'none';
       }
+    }
+
+    function resetForm() {
+      document.getElementById('fileInput').value = null;
+      document.getElementById('preview').src = '';
+      document.getElementById('preview').classList.remove('show');
+      document.getElementById('result').textContent = '';
+      selectedFile = null;
     }
   </script>
 </body>
