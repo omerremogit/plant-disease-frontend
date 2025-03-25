@@ -6,15 +6,18 @@
   <title>🌿 LeafLens – Plant Disease Identification System</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #e8f5e9, #f1f8e9);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
     }
 
     .container {
@@ -23,8 +26,10 @@
       border-radius: 20px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       text-align: center;
-      width: 90%;
-      max-width: 700px;
+      width: 95%;
+      max-width: 900px;
+      margin: 2rem auto;
+      flex: 1;
       animation: fadeSlideIn 0.6s ease-out;
     }
 
@@ -121,6 +126,9 @@
       border-radius: 10px;
       margin-top: 1rem;
       display: none;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     @keyframes spin {
@@ -154,21 +162,50 @@
     <div class="analysis" id="analysis"></div>
   </div>
 
-  <footer>
-    <p><strong>LeafLens</strong> – Developed for EAI6010 @ Northeastern University</p>
-    <p>
-      <a onclick="toggleModal('licenseModal')">License</a> |
-      <a onclick="toggleModal('contactModal')">Contact</a> |
-      <a href="https://youtu.be/YBmdeQr0_7Q" target="_blank">YouTube Demo</a>
-    </p>
+  <div id="modalArea">
     <div id="licenseModal" class="footer-modal">
       <strong>License – GPL v0:</strong><br/>
-      This project is licensed under GPL version 0 – intended for educational use only. Redistribution or commercial deployment is restricted unless explicit permission is granted.
+      This project is licensed for educational use only. Redistribution or commercial use is restricted.
     </div>
+
+    <div id="noteModal" class="footer-modal">
+      📌 <strong>Note:</strong><br/>
+      The LeafLens video and presentation demonstrate a mobile app concept.<br/>
+      This website is the current web utility to test disease prediction functionality.
+    </div>
+
+    <div id="disclaimerModal" class="footer-modal">
+      ⚠️ <strong>Disclaimer:</strong><br/>
+      LeafLens predictions are for informational use. Always consult a plant expert before taking action.
+    </div>
+
+    <div id="termsModal" class="footer-modal">
+      📜 <strong>Terms & Conditions:</strong><br/>
+      By using LeafLens, you agree we are not liable for damage resulting from AI predictions.
+    </div>
+
+    <div id="privacyModal" class="footer-modal">
+      🔒 <strong>Privacy Policy:</strong><br/>
+      No personal data is stored. Uploaded images are not saved after processing.
+    </div>
+
     <div id="contactModal" class="footer-modal">
       <strong>Contact Us:</strong><br/>
       Email: <a href="mailto:leaf-lens@googlegroups.com">leaf-lens@googlegroups.com</a>
     </div>
+  </div>
+
+  <footer>
+    <p><strong>LeafLens</strong> – Developed for EAI6010 @ Northeastern University</p>
+    <p>
+      <a onclick="toggleModal('licenseModal')">License</a> |
+      <a onclick="toggleModal('noteModal')">Note</a> |
+      <a onclick="toggleModal('disclaimerModal')">Disclaimer</a> |
+      <a onclick="toggleModal('termsModal')">Terms</a> |
+      <a onclick="toggleModal('privacyModal')">Privacy</a> |
+      <a onclick="toggleModal('contactModal')">Contact</a> |
+      <a href="https://youtu.be/YBmdeQr0_7Q" target="_blank">YouTube Demo</a>
+    </p>
   </footer>
 
   <script>
@@ -244,9 +281,22 @@
     }
 
     function toggleModal(id) {
-      const modal = document.getElementById(id);
-      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+      const modals = document.querySelectorAll('.footer-modal');
+      modals.forEach(m => m.style.display = 'none');
+      const target = document.getElementById(id);
+      if (target) {
+        target.style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
     }
+
+    // Optional: Hide modals when clicked outside
+    document.addEventListener('click', function (event) {
+      if (!event.target.matches('a')) {
+        const modals = document.querySelectorAll('.footer-modal');
+        modals.forEach(m => m.style.display = 'none');
+      }
+    });
   </script>
 </body>
 </html>
