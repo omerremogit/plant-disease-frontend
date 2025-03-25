@@ -11,7 +11,7 @@
       background: linear-gradient(to bottom right, #e8f5e9, #f1f8e9);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       min-height: 100vh;
       margin: 0;
@@ -19,14 +19,13 @@
 
     .container {
       background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       text-align: center;
-      width: 100%;
-      max-width: 500px;
+      width: 90%;
+      max-width: 700px;
       animation: fadeSlideIn 0.6s ease-out;
-      margin-top: 2rem;
     }
 
     h1 {
@@ -43,8 +42,8 @@
       background-color: #4caf50;
       color: white;
       border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
+      padding: 0.8rem 1.7rem;
+      border-radius: 10px;
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -57,7 +56,7 @@
 
     img {
       width: 100%;
-      max-width: 300px;
+      max-width: 350px;
       height: auto;
       margin-top: 1.5rem;
       border-radius: 12px;
@@ -100,23 +99,28 @@
     }
 
     footer {
-      margin-top: 2rem;
-      background: #f1f8e9;
+      background: #2e7d32;
+      color: white;
       padding: 1rem;
+      font-size: 0.85rem;
       width: 100%;
       text-align: center;
-      font-size: 0.85rem;
-      color: #558b2f;
     }
 
     footer a {
-      color: #33691e;
+      color: #c8e6c9;
       margin: 0 0.5rem;
-      text-decoration: none;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .footer-modal {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      display: none;
     }
 
     @keyframes spin {
@@ -151,15 +155,20 @@
   </div>
 
   <footer>
-    <p>🔬 <strong>LeafLens</strong> – Your Smart Plant Doctor in a Pocket</p>
-    <p>Developed as part of <strong>EAI6010 - Applications of AI</strong> @ Northeastern University</p>
-    <p>Team: Mohammed Omer Ahmed | Arpita Kachhwah | Abhishek Jha | Tushar Nayak | Arjun Shrivatsan</p>
+    <p><strong>LeafLens</strong> – Developed for EAI6010 @ Northeastern University</p>
     <p>
-      <a href="https://youtu.be/YBmdeQr0_7Q" target="_blank">🎥 YouTube Demo</a> |
-      <a href="#">About</a> |
-      <a href="#">Contact</a> |
-      <a href="#">License</a>
+      <a onclick="toggleModal('licenseModal')">License</a> |
+      <a onclick="toggleModal('contactModal')">Contact</a> |
+      <a href="https://youtu.be/YBmdeQr0_7Q" target="_blank">YouTube Demo</a>
     </p>
+    <div id="licenseModal" class="footer-modal">
+      <strong>License – GPL v0:</strong><br/>
+      This project is licensed under GPL version 0 – intended for educational use only. Redistribution or commercial deployment is restricted unless explicit permission is granted.
+    </div>
+    <div id="contactModal" class="footer-modal">
+      <strong>Contact Us:</strong><br/>
+      Email: <a href="mailto:leaf-lens@googlegroups.com">leaf-lens@googlegroups.com</a>
+    </div>
   </footer>
 
   <script>
@@ -232,6 +241,11 @@
       document.getElementById('result').textContent = '';
       document.getElementById('analysis').style.display = 'none';
       selectedFile = null;
+    }
+
+    function toggleModal(id) {
+      const modal = document.getElementById(id);
+      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 </body>
