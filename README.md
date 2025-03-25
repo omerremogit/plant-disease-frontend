@@ -83,5 +83,5 @@ Arjun Shrivatsan
 
 🎥 Demo Video
 Watch the demo here:
-▶️ https://youtu.be/YBmdeQr0_7Q
+▶️ https://youtu.be/AKyaO9zKJv8
 
