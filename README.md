@@ -1,7 +1,4 @@
-📄 README.md
-markdown
-Copy
-Edit
+
 # 🌿 LeafLens – Plant Disease Identification System (Frontend)
 
 **LeafLens** is a lightweight, web-based plant disease classifier that allows users to upload an image of a leaf and get AI-based disease predictions. This is the **frontend interface**, designed for easy testing and demonstration of plant disease identification using an image classifier backend.
